@@ -19,7 +19,7 @@ export type Props = {
   tags: string[];
   author: string;
   description?: string;
-  source: MDXRemoteSerializeResult;
+  source: any;
 };
 
 const components = { InstagramEmbed, YouTube, TwitterTweetEmbed };
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
     },
   });
-  const mdxSource = await serialize(content, { components, scope: data });
+  const mdxSource = await serialize(content, { scope: data });
   return {
     props: {
       title: data.title,
